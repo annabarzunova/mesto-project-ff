@@ -15,18 +15,18 @@ const buttonAddCard = document.querySelector('.profile__add-button');
 
 
 const profile = document.querySelector(".profile");
-profileAvatarEditButton = profile.querySelector(".profile__image");
-profileEditButton = profile.querySelector(".profile__edit-button"),
-profileTitle = profile.querySelector(".profile__title");
-profileDescription = profile.querySelector(".profile__description");
-profileAddButton = profile.querySelector(".profile__add-button");
+const profileAvatarEditButton = profile.querySelector(".profile__image");
+const profileEditButton = profile.querySelector(".profile__edit-button");
+const profileTitle = profile.querySelector(".profile__title");
+const profileDescription = profile.querySelector(".profile__description");
+const profileAddButton = profile.querySelector(".profile__add-button");
 
 const popups = document.querySelectorAll(".popup");
-popupEditProfile = document.querySelector(".popup_type_edit");
-popupNewCard = document.querySelector(".popup_type_new-card");
-popupImageContainer = document.querySelector(".popup_type_image"),
-popupImage = popupImageContainer.querySelector(".popup__image"),
-popupCaption = popupImageContainer.querySelector(".popup__caption");
+const popupEditProfile = document.querySelector(".popup_type_edit");
+const popupNewCard = document.querySelector(".popup_type_new-card");
+const popupImageContainer = document.querySelector(".popup_type_image");
+const popupImage = popupImageContainer.querySelector(".popup__image");
+const popupCaption = popupImageContainer.querySelector(".popup__caption");
 
   // для edit-profile
 const profileForm = document.querySelector('.popup__form[name="edit-profile"]');
@@ -104,7 +104,7 @@ initialCards.forEach(function(obj) {
 /* Функция открытия попапов */
 
 function openPopup(popup) {
-  popup.classList.add("popup_is-opened");
+  popup.classList.add("popup_is-opened"); 
 
   document.addEventListener("keydown", closeByEscape);
 }
