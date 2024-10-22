@@ -1,6 +1,10 @@
 import "./pages/index.css";
 
-import { initialCards, createCard, LikeClick, onDelete } from './components/cards';
+import { createCard, LikeClick, onDelete } from './components/card';
+
+import { initialCards } from './components/cards';
+
+import { openPopup, closeByEscape, closePopup, closeByOverlay} from './components/modal';
 // @todo: Функция создания карточки
 
 // @todo: Темплейт карточки
@@ -101,7 +105,7 @@ initialCards.forEach(function(obj) {
   cardRender(listCard, createCard(obj, onDelete, LikeClick, OpenImage));
 });
 
-/* Функция открытия попапов */
+/* Функция открытия попапов 
 
 function openPopup(popup) {
   popup.classList.add("popup_is-opened"); 
@@ -113,14 +117,14 @@ function openPopup(popup) {
 
 
 
-/* Функция закрытия попапов c помощью Escape */
+/* Функция закрытия попапов c помощью Escape 
 
 function closeByEscape(evt) {
   const openedPopup = document.querySelector(".popup_is-opened");
 
   if (evt.key === "Escape") closePopup(openedPopup);
 }
-/* Функция закрытия попапов */
+/* Функция закрытия попапов 
 
 
 function closePopup(popup) {
@@ -128,7 +132,7 @@ function closePopup(popup) {
 
   document.removeEventListener("keydown", closeByEscape);
 } 
-/* Функция закрытия попапов c помощью оверлея */
+/* Функция закрытия попапов c помощью оверлея 
 function closeByOverlay(evt) {
   const openedPopup = document.querySelector(".popup_is-opened");
 
