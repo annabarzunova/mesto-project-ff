@@ -14,7 +14,7 @@ function closeByEscape(evt) {
 /* Функция закрытия попапов */
 
 function closePopup(popup) {
-  popup.classList.remove(".popup_is-opened");
+  popup.classList.remove("popup_is-opened");
   document.removeEventListener("keydown", closeByEscape);
 }
 
@@ -26,7 +26,7 @@ function closePopup(popup) {
 // }
 function closePopupByClick(evt) {
   const openedPopup = document.querySelector(".popup_is-opened");
-   if (evt.target.matches(".popup_is-opened, .popup__close"))
+  if (evt.target.matches(".popup_is-opened, .popup__close"))
     closePopup(openedPopup);
 }
 

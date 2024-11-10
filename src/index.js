@@ -10,9 +10,7 @@ import {
 
 // @todo: DOM узлы
 const listCard = document.querySelector(".places__list");
-const buttonAddCard = document.querySelector(".profile__add-button");
 const profile = document.querySelector(".profile");
-const profileAvatarEditButton = profile.querySelector(".profile__image");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const profileTitle = profile.querySelector(".profile__title");
 const profileDescription = profile.querySelector(".profile__description");
@@ -37,8 +35,8 @@ const linkCardInput = cardForm.elements.link;
 
 // для открытия изображения
 
-function onImageClick(cardData) {
-  const newCard = cardData.closest(".card"),
+function openImagePopup(cardElement) {
+  const newCard = cardElement.closest(".card"),
     cardImage = newCard.querySelector(".card__image"),
     cardTitle = newCard.querySelector(".card__title");
 
@@ -49,14 +47,17 @@ function onImageClick(cardData) {
   openPopup(popupImageContainer);
 }
 
-function cardRender(container, cardData) {
+function renderCard(container, cardData) {
   container.append(cardData);
 }
 
 // @todo: Вывести карточки на страницу
 
 initialCards.forEach(function (obj) {
-  cardRender(listCard, createCard(obj, handleDelete, handleLikeClick, onImageClick));
+  renderCard(
+    listCard,
+    createCard(obj, handleDelete, handleLikeClick, openImagePopup)
+  );
 });
 
 /* Обработчики событий (формы, попапы)*/
@@ -70,20 +71,21 @@ function openEditProfilePopup() {
 profileEditButton.addEventListener("click", () => openEditProfilePopup());
 profileAddButton.addEventListener("click", () => openPopup(popupNewCard));
 
-popups.forEach((popup) => popup.addEventListener("mousedown", closePopupByClick));
+popups.forEach((popup) =>
+  popup.addEventListener("mousedown", closePopupByClick)
+);
 
 // Обработчик «отправки» формы
-function handleFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = profileNameInput.value;
   profileDescription.textContent = profileAboutInput.value;
-  const openedPopup = document.querySelector(".popup_is-opened");
-  closePopup(openedPopup);
+  closePopup(popupEditProfile);
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-profileForm.addEventListener("submit", handleFormSubmit);
+profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 // добавление новой карточки
 
@@ -93,7 +95,12 @@ function handleCardFormSubmit(evt) {
     name: nameCardInput.value,
     link: linkCardInput.value,
   };
-  const newCard = createCard(newCardData, handleDelete, handleLikeClick, onImageClick);
+  const newCard = createCard(
+    newCardData,
+    handleDelete,
+    handleLikeClick,
+    onImageClick
+  );
 
   listCard.prepend(newCard);
   closePopup(popupNewCard);

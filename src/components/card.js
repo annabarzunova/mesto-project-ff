@@ -1,6 +1,8 @@
 function createCard(cardData, onDelete, onLikeClick, onImageClick) {
   const cardTemplate = document.querySelector("#card-template").content;
-  const cardElement = cardTemplate.querySelector(".places__item").cloneNode(true);
+  const cardElement = cardTemplate
+    .querySelector(".places__item")
+    .cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   const cardLikeButton = cardElement.querySelector(".card__like-button");
@@ -12,9 +14,11 @@ function createCard(cardData, onDelete, onLikeClick, onImageClick) {
 
   cardImage.addEventListener("click", () => onImageClick(cardElement));
 
-  cardElement.querySelector(".card__delete-button").addEventListener("click", () => {
-    onDelete(cardElement);
-  });
+  cardElement
+    .querySelector(".card__delete-button")
+    .addEventListener("click", () => {
+      onDelete(cardElement);
+    });
 
   cardLikeButton.addEventListener("click", onLikeClick);
   return cardElement;
