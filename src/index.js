@@ -93,18 +93,19 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const newCardData = {
     name: nameCardInput.value,
-    link: linkCardInput.value,
-  };
+    link: linkCardInput.value}
+  
   const newCard = createCard(
     newCardData,
     handleDelete,
     handleLikeClick,
-    onImageClick
+    openImagePopup,
   );
 
   listCard.prepend(newCard);
   closePopup(popupNewCard);
   cardForm.reset();
 }
+
 
 cardForm.addEventListener("submit", handleCardFormSubmit);
