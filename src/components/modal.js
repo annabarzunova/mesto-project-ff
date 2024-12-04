@@ -21,8 +21,9 @@ function closePopup(popup) {
 /* Функция закрытия попапов c помощью оверлея */
 
 function closePopupByClick(evt) {
-  if (evt.target.matches(".popup_is-opened, .popup__close"));
+  if (evt.target.matches(".popup_is-opened, .popup__close")) {
     closePopup(evt.target.closest(".popup_is-opened"));
+}
 }
 
 
